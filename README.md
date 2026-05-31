@@ -8,6 +8,8 @@ Drop it into any repo. Claude Code, Codex, Cursor, Gemini CLI, Aider, Windsurf, 
 
 It just works.
 
+This is the tool and the core operating discipline we run on every project at Ferrox Labs. One file, every agent, every repo.
+
 ---
 
 ## Install
