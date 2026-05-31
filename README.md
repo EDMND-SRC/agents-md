@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/TheRealSeanDonahoe/agents-md/releases/download/v0.1.0/hero.png" alt="Sean Donahoe's AGENTS.md — Smarter Operating Instructions for Coding Agents" width="100%">
+  <img src="https://github.com/FerroxLabs/agents-md/releases/download/v0.1.0/hero.png" alt="Sean Donahoe's AGENTS.md — Smarter Operating Instructions for Coding Agents" width="100%">
 </p>
 
 **One file. Every coding agent starts behaving like a senior engineer.**
@@ -16,9 +16,9 @@ It just works.
 
 Open Claude Code, Codex, Cursor, or any coding agent in your project root. Paste this:
 
-> Install https://github.com/TheRealSeanDonahoe/agents-md into this project.
+> Install https://github.com/FerroxLabs/agents-md into this project.
 >
-> 1. Fetch `https://raw.githubusercontent.com/TheRealSeanDonahoe/agents-md/main/AGENTS.md` and save it as `./AGENTS.md` at the project root. If `AGENTS.md` already exists, stop and show me the diff before overwriting.
+> 1. Fetch `https://raw.githubusercontent.com/FerroxLabs/agents-md/main/AGENTS.md` and save it as `./AGENTS.md` at the project root. If `AGENTS.md` already exists, stop and show me the diff before overwriting.
 > 2. Symlink `CLAUDE.md` and `GEMINI.md` to `AGENTS.md` so Claude Code and Gemini CLI read the same file. Use the right command for my OS (`ln -s` on macOS/Linux, `New-Item -ItemType SymbolicLink` on Windows). If symlinks fail, fall back to copying the file. If `CLAUDE.md` or `GEMINI.md` already exist with content, do not overwrite — prepend `@AGENTS.md` as the first line and leave the rest intact.
 > 3. Open the new `AGENTS.md`, find section 10 (Project context), and fill in only what you can verify by reading this codebase: stack, build/test/lint commands from `package.json`, `pyproject.toml`, `Cargo.toml`, or `Makefile`, and source/test directory layout. Leave anything you can't confirm as `TODO`.
 > 4. Do not touch section 11 — it stays empty by design.
@@ -29,7 +29,7 @@ Restart the session. You're done.
 ### The manual way
 
 ```bash
-curl -o AGENTS.md https://raw.githubusercontent.com/TheRealSeanDonahoe/agents-md/main/AGENTS.md
+curl -o AGENTS.md https://raw.githubusercontent.com/FerroxLabs/agents-md/main/AGENTS.md
 ```
 
 Codex, Cursor, Aider, Windsurf, Copilot, Devin, Amp, opencode, and RooCode read `AGENTS.md` on their own. Nothing else to do.
