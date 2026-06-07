@@ -138,7 +138,7 @@ For every task:
 After every session where the agent did something wrong:
 
 1. Ask: was the mistake because this file lacks a rule, or because the agent ignored a rule?
-2. If lacking: add the rule under "Project Learnings" below, written as concretely as possible ("Always use X for Y" not "be careful with Y").
+2. If lacking and globally applicable: add the rule under "Global Learnings" below, written as concretely as possible ("Always use X for Y" not "be careful with Y"). If it is repo-specific, add it to that repository's own `AGENTS.md`.
 3. If ignored: the rule may be too long, too vague, or buried. Tighten it or move it up.
 4. Every few weeks, prune. For each line, ask: "Would removing this cause the agent to make a mistake?" If no, delete. Bloated AGENTS.md files get ignored wholesale.
 
@@ -146,48 +146,45 @@ Boris Cherny (creator of Claude Code) keeps his team's file around 100 lines. Un
 
 ---
 
-## 10. Project context
+## 10. Edmond's global machine context
 
-**Fill this in per project. Keep it specific. Delete sections that don't apply.**
+**These are personal defaults for local Codex sessions on Edmond's Mac. Project-level AGENTS.md files may add repo-specific stack, commands, layout, and conventions.**
 
-### Stack
-- Language and version:
-- Framework(s):
-- Package manager:
-- Runtime / deployment target:
+### Shell commands
+- Always prefix shell commands with `rtk`.
+- Use `rtk proxy <cmd>` when the raw command must run unchanged.
+- Examples: `rtk git status`, `rtk npm test`, `rtk proxy docker --context colima compose up`.
 
-### Commands
-- Install: `TODO`
-- Build: `TODO`
-- Test (all): `TODO`
-- Test (single file): `TODO`
-- Lint: `TODO`
-- Typecheck: `TODO`
-- Run locally: `TODO`
+### Docker
+- This machine uses Homebrew Docker CLI, the Homebrew Docker Compose plugin, and Colima.
+- Do not use Docker Desktop.
+- Prefer explicit Colima context commands:
+  - `rtk proxy docker --context colima compose up`
+  - `rtk proxy docker --context colima build .`
+  - `rtk proxy docker --context colima run --rm ...`
+- Never use `docker-compose`; use `docker compose`.
+- Never use `/var/run/docker.sock`, `DOCKER_HOST`, or `docker-credential-desktop`.
+- If Docker is unavailable locally, run:
+  - `rtk colima status || rtk colima start --cpu 2 --memory 2`
+  - `rtk proxy docker context use colima`
+  - `unset DOCKER_HOST`
+- Verify with:
+  - `rtk proxy docker context ls`
+  - `rtk proxy docker info --format 'context={{.ClientInfo.Context}}'`
+  - `rtk proxy docker compose version`
+- Expected active Docker context: `colima`.
 
-Prefer single-file or single-test runs during iteration. Full suites are for the final verification pass.
-
-### Layout
-- Source lives in: `TODO`
-- Tests live in: `TODO`
-- Do not modify: `TODO` (generated code, vendored deps, legacy areas)
-
-### Conventions specific to this repo
-- Naming: `TODO`
-- Import style: `TODO`
-- Error handling pattern: `TODO`
-- Testing pattern and framework: `TODO`
-
-### Forbidden
-- `TODO`: things that look reasonable but will break this project.
+### Cloud tasks
+- Cloud or offloaded Codex tasks cannot assume access to this Mac's Colima VM.
+- For cloud tasks, either avoid Docker, mock Docker-dependent steps, or use that environment's own container setup.
 
 ---
 
-## 11. Project Learnings
+## 11. Global Learnings
 
-**Accumulated corrections. This section is for the agent to maintain, not just the human.**
+**Accumulated global corrections. This section is for the agent to maintain, not just the human.**
 
-When the user corrects your approach, append a one-line rule here before ending the session. Write it concretely ("Always use X for Y"), never abstractly ("be careful with Y"). If an existing line already covers the correction, tighten it instead of adding a new one. Remove lines when the underlying issue goes away (model upgrades, refactors, process changes).
+Only add learnings here when they apply across all of Edmond's projects. Put repo-specific learnings in that repository's own `AGENTS.md`. When the user corrects your approach, append a one-line rule here before ending the session. Write it concretely ("Always use X for Y"), never abstractly ("be careful with Y"). If an existing line already covers the correction, tighten it instead of adding a new one. Remove lines when the underlying issue goes away (model upgrades, refactors, process changes).
 
 - (empty)
 
